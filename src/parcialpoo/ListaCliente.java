@@ -19,7 +19,7 @@ public class ListaCliente {
     public ListaCliente(){
         clientes=new ArrayList<>();
     }
-    public Cliente nuevoCliene(String nombre){
+    public Cliente nuevoCliente(String nombre) {
         Cliente nuevo= new Cliente();
         clientes.add(nuevo);
         Scanner leer=new Scanner(System.in);

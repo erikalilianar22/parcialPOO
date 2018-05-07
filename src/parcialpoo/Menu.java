@@ -142,7 +142,7 @@ public class Menu {
                         listaReserva.nuevaReserva();
                         break;
                     case 3:
-                        listaReserva.modificaraReserva();;
+                        listaReserva.modificarReserva();;
                         //System.out.println("editar reservacion existente");
                         break;
                     case 4:
