@@ -189,9 +189,16 @@ public class Menu {
     public void administracion(){
         System.out.println("------SubMenu Administrador------");
         int opcion = 4;
+                    
+        int contra=2018;
+        
         Scanner leer = new Scanner(System.in);
         
+        System.out.println("Contrasenna por favor:");
+        int contra1= leer.nextInt();
+             
         while (opcion != 8) {
+            if (contra1==contra){
             opcionesAdministracion();
             try {
                 opcion = leer.nextInt();
@@ -242,6 +249,10 @@ public class Menu {
                 leer.nextLine();
             }
         }
+            else{
+             System.out.println("Contrasenna incorrecta");          
+             administracion();
+            }
     }
-    
+    }   
 }
