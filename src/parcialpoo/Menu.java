@@ -36,13 +36,17 @@ public class Menu {
         System.out.println("3. Salir");
     }
      public void opcionesReserva(){
+         System.out.println("_________________________________");
          System.out.println("1. Mostar reservaciones de la semana");
          System.out.println("2. crear nueva reservacion");
          System.out.println("3. editar reservacion existente");
          System.out.println("4. eliminar reservacion");
-         System.out.println("5. regresar a menu principal");  
+         System.out.println("5. cancelar reservacion(cumplir y cobrar)");
+         System.out.println("6. mostar datos de cliente");
+         System.out.println("7. regresar a menu principal");  
      }
      public void opcionesAdministracion(){
+         System.out.println("__________________________________");
          System.out.println("1. habilitar habitacion");
          System.out.println("2. habilitar piso");
          System.out.println("3. habilitar todo");
@@ -53,6 +57,7 @@ public class Menu {
          System.out.println("8. regresar a menu principal");
      }
      public void opcionesPack(){
+         System.out.println("_________________________________");
          System.out.println("1. crear Pack");
          System.out.println("2. eliminar Pack");
          System.out.println("3. editar Pack");
@@ -128,7 +133,7 @@ public class Menu {
         int opcion = 4;
         Scanner leer = new Scanner(System.in);
         
-        while (opcion != 5) {
+        while (opcion != 7) {
             opcionesReserva();
             try {
                 opcion = leer.nextInt();
@@ -153,6 +158,21 @@ public class Menu {
                         //System.out.println("eliminar reseravcion");
                         break;
                     case 5:
+                        listaReserva.mostrar();
+                        System.out.println("que reserva desea eliminar:");
+                        Utils utils=new Utils();
+                        listaReserva.Cumplir(utils.pedirEntero());
+                        //System.out.println("5. cancelar reservacion(cumplir y cobrar)");
+                        
+                        break;
+                    case 6:
+                        listaReserva.clientes.mostrar();
+                        System.out.println("nombre Cliente del que desea conocer todos los datos:");
+                        Scanner leerDato= new Scanner(System.in);
+                        listaReserva.clientes.mostrar(leerDato.nextLine());
+                        //System.out.println("6. mostar datos de cliente");
+                        break;
+                    case 7:
                         System.out.println("adios");
                         break;
                     default:

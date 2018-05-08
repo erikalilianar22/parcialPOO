@@ -51,7 +51,19 @@ public class ListaCliente {
         int i=1;
         System.out.println("Clientes Registrados:");
         for (Cliente e : clientes){
-            System.out.println(i + ". "+ e.nombre +" : "+e.DUI+" : "+e.telefono+" : "+e.tarjeta_credito);
+            System.out.println(i + ". "+ e.nombre +" ; DUI:"+e.DUI+" ; Telefono: "+e.telefono);
+            i++;
+        }
+    }
+    public void mostrar(String nombre){
+        int i=1;
+        //System.out.println("Clientes Registrados:");
+        for (Cliente e : clientes){
+            if (e.nombre.equals(nombre)){
+            System.out.println(e.nombre +" ;  edad: "+ e.edad +" ; DUI: "+e.DUI+" ; Telefono:"
+                    +e.telefono);
+                System.out.println("Tajeta de credito: "+e.tarjeta_credito+" ; Pasaporte: "
+                        +e.pasaporte+" ; Correo: "+e.correo);}
             i++;
         }
     }
