@@ -21,6 +21,8 @@ public class Habitacion {
     public int precioBase;
     public int total;
     public Cliente cliente;
+    public int diaInicio;
+    public int diaFin;
 
     
     public Habitacion(){

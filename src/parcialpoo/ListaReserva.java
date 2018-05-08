@@ -38,6 +38,7 @@ public class ListaReserva {
         Reserva reserva=new Reserva();
         reservas.add(reserva);
         reserva.cliente=nuevoCliente();
+        if (reserva.cliente != null){
         reserva.habitacion=nuevaHabitacion();
         reserva.pack=nuevoPack();
         total=reserva.habitacion.total;
@@ -46,12 +47,9 @@ public class ListaReserva {
             total+= reserva.pack.getPrecio();
         }
         
-        System.out.println("DIAS A RESERVAR(MAXIMO 7 DIAS): ");
-        System.out.println("DIA INICIAL: ");
-        Utils util= new Utils();
-        diaInicio=util.pedirEntero()%7;
-        diaFin=util.pedirEntero("DIA A FINALIZAR: ")%7;
-        reserva.Total=total*Math.abs(diaInicio-diaFin);   
+        
+        reserva.Total=total*Math.abs(diaInicio-diaFin);   }
+        else reservas.remove(reserva);
     }
     
     public ListaReserva(ArrayList<Reserva> reservas){
@@ -74,16 +72,21 @@ public class ListaReserva {
     }
     
     public Habitacion nuevaHabitacion(){
+        System.out.println("DIAS A RESERVAR(MAXIMO 7 DIAS): ");
+        System.out.println("DIA INICIAL: ");
+        Utils util= new Utils();
+        diaInicio=util.pedirEntero()%7;
+        diaFin=util.pedirEntero("DIA A FINALIZAR: ")%7;
+        if (diaFin<diaInicio){
+            int temp= diaFin;
+            diaFin= diaInicio;
+            diaInicio= diaFin;
+        }
         Habitacion nueva;
         
         while(true){
-            nueva= habitaciones.buscar();
-            
-            if(!nueva.reservada){
-                return nueva;
-            }
-            
-            System.out.println("HABITACION RESERVADA");
+            nueva= habitaciones.buscar(diaInicio,diaFin);
+            return nueva;
         }
     }
     

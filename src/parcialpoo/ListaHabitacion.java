@@ -46,6 +46,22 @@ public class ListaHabitacion {
             System.out.println("debe seleccionar una habitacion de la lista");
         }
     }
+    public Habitacion buscar(int diaInicio, int diaFin){
+        mostrar(diaInicio,diaFin);
+        Utils util= new Utils();
+        while (true){
+        int i=util.pedirEntero("elija su habitacion disponible de la lista: ");
+        int j=1;
+        for (Habitacion a : habitaciones){
+            if (a.diaInicio >= diaInicio && a.diaFin <= diaFin){
+            }else{if (i==j){
+                return a;
+            }
+            j++;}
+        }
+            System.out.println("debe seleccionar una habitacion de la lista");
+        }
+    }
     public void habilitarHabitacion(Habitacion habitacion){
         habitacion.disponible=true;
     }
@@ -75,19 +91,20 @@ public class ListaHabitacion {
         int i= 1;
         for (Habitacion e: habitaciones){
             System.out.println(i+ ").  "+e.piso+e.Numero);
-            /*if (e.pack!=null ){
-                 System.out.println("\n pack: "+e.pack.getNombre());
-            }
-            System.out.println("\n  precio: "+e.precioBase+" disponible:"+e.disponible);
-            if (e.cliente.nombre!=null ){
-                 System.out.println("\n  cliente: "+e.cliente.nombre);}
-                   */
+            
             i++;
         }
-        
-        
     }
-    
+    public void mostrar(int diaInicio, int diaFin){
+        System.out.println("habitaciones existentes: ");
+        int i= 1;
+        for (Habitacion e: habitaciones){
+            if (e.diaInicio >= diaInicio && e.diaFin <= diaFin){
+            }else {System.out.println(i+ ").  "+e.piso+e.Numero);
+            
+            i++;}
+        }
+    }
     
     public void modificarPrecio(){
             Utils util = new Utils();
