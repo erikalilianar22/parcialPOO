@@ -18,6 +18,7 @@ public class ParcialPOO {
         // TODO code application logic here
         
         //Menu menu = null;
+        System.out.println("contraseña por defecto: 2018");
         ListaPack listaPack= new ListaPack();
         paquetesIniciales(listaPack);//inicializando los paquetes
         ListaCliente listaClientes=new ListaCliente();
