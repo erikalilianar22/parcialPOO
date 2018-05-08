@@ -159,7 +159,7 @@ public class Menu {
                         break;
                     case 5:
                         listaReserva.mostrar();
-                        System.out.println("que reserva desea eliminar:");
+                        System.out.println("que reserva se desea cancelar (cobrar):");
                         Utils utils=new Utils();
                         listaReserva.Cumplir(utils.pedirEntero());
                         //System.out.println("5. cancelar reservacion(cumplir y cobrar)");
