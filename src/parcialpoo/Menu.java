@@ -54,7 +54,8 @@ public class Menu {
          System.out.println("5. deshabilitar piso");
          System.out.println("6. cambiar precio base de habitacion");
          System.out.println("7. modificar paquete");
-         System.out.println("8. regresar a menu principal");
+         System.out.println("8. cambiar contraseña");
+         System.out.println("9. regresar a menu principal");
      }
      public void opcionesPack(){
          System.out.println("_________________________________");
@@ -197,7 +198,7 @@ public class Menu {
         System.out.println("Contrasenna por favor:");
         int contra1= leer.nextInt();
              
-        while (opcion != 8) {
+        while (opcion != 9) {
             if (contra1==contra){
             opcionesAdministracion();
             try {
@@ -239,6 +240,11 @@ public class Menu {
                         packetes();
                         break;
                     case 8: 
+                        System.out.println("ingrese nueva contraseña ");
+                        Utils utilidadd=new Utils();
+                        contra1=utilidadd.pedirEntero();
+                        break;
+                    case 9:
                         System.out.println("adios ");
                         break;
                     default:
