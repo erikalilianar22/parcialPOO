@@ -40,15 +40,17 @@ public class ListaReserva {
         reserva.cliente=nuevoCliente();
         if (reserva.cliente != null){
         reserva.habitacion=nuevaHabitacion();
+        reserva.habitacion.cliente=reserva.cliente;
         reserva.pack=nuevoPack();
         total=reserva.habitacion.total;
         
         if(reserva.pack !=null){
             total+= reserva.pack.getPrecio();
         }
-        
-        
-        reserva.Total=total*Math.abs(diaInicio-diaFin);   }
+        reserva.diaInicio=diaInicio;
+        reserva.diaFin=diaFin;
+        reserva.Total=total*(Math.abs(diaInicio-diaFin)+1);
+        }
         else reservas.remove(reserva);
     }
     
@@ -83,9 +85,11 @@ public class ListaReserva {
             diaInicio= diaFin;
         }
         Habitacion nueva;
-        
         while(true){
             nueva= habitaciones.buscar(diaInicio,diaFin);
+            nueva.diaFin= diaFin;
+            nueva.diaInicio=diaInicio;
+            nueva.addDias();
             return nueva;
         }
     }
@@ -95,7 +99,7 @@ public class ListaReserva {
         Scanner leer=new Scanner(System.in);
         String flag=leer.nextLine();
         
-        if (flag=="S"){
+        if ("S".equals(flag)||"s".equals(flag)){
             packs.mostrar();
             System.out.println("INGRESE PAQUETE A ELEGIR: ");
             Utils util= new Utils();
@@ -108,11 +112,12 @@ public class ListaReserva {
         int i=1;
         
         for(Reserva e: reservas){
-            System.out.println(i+"-). CLIENTE: "+e.cliente.nombre+"HABITACION: "+e.habitacion.piso+e.habitacion.Numero);
-            
+            String paquete="";
             if(e.pack !=null){
-                System.out.println("PAQUETE: "+e.pack.getNombre());
+                paquete="  PAQUETE: "+e.pack.getNombre();
             }
+            System.out.println(i+"). CLIENTE: "+e.cliente.nombre+"  HABITACION: "+e.habitacion.piso+e.habitacion.Numero+"  del dia "
+                    +e.diaInicio+" al "+ e.diaFin+paquete);
             i++;
         }
     }
@@ -122,6 +127,22 @@ public class ListaReserva {
         
         for(Reserva e: reservas){
             if (i==reserva){
+                e.habitacion.cliente=null;
+                e.pack=null;
+                reservas.remove(e);
+            }
+            i++;
+        }
+    }
+    
+    public void Cumplir(int reserva){
+        int i=1;
+        
+        for(Reserva e: reservas){
+            if (i==reserva){
+                e.habitacion.cliente=null;
+                e.pack=null;
+                System.out.println("total a cancelar: " +e.Total);
                 reservas.remove(e);
             }
             i++;
@@ -133,14 +154,14 @@ public class ListaReserva {
         System.out.println("INGRESE LA RESERVA QUE DESEA MODIFICAR: ");
         Utils util= new Utils();
         Reserva reserva= devolverReserva(util.pedirEntero());
-        reserva.habitacion= nuevaHabitacion();
-        reserva.pack= nuevoPack();
-        total=reserva.habitacion.total +reserva.pack.getPrecio();
-        System.out.println("DIAS A RESERVAR(MAXIMO 7 DIAS): ");
-        System.out.println("DIA INICIAL: ");
-        diaInicio= util.pedirEntero()%7;
-        diaFin=util.pedirEntero("DIA A FINALIZAR: ")%7;
-        reserva.Total= total*Math.abs(diaInicio-diaFin);
+        reserva.habitacion=nuevaHabitacion();
+        reserva.habitacion.cliente=reserva.cliente;
+        reserva.pack=nuevoPack();
+        total=reserva.habitacion.total;
+        if(reserva.pack !=null){
+            total+= reserva.pack.getPrecio();
+        }
+        reserva.Total=total*Math.abs(diaInicio-diaFin); 
     }
     
     public Reserva devolverReserva(int reserva){

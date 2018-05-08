@@ -53,15 +53,23 @@ public class ListaHabitacion {
         int i=util.pedirEntero("elija su habitacion disponible de la lista: ");
         int j=1;
         for (Habitacion a : habitaciones){
-            if (a.diaInicio >= diaInicio && a.diaFin <= diaFin){
-            }else{if (i==j){
+            boolean flag=true;
+            for (int m=diaInicio;m<=diaFin;m++){
+                for(int k: a.dias){
+                    if(m==k){
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag){
                 return a;
             }
             j++;}
+        
+            System.out.println("debe seleccionar una habitacion de la lista");}
         }
-            System.out.println("debe seleccionar una habitacion de la lista");
-        }
-    }
+    
     public void habilitarHabitacion(Habitacion habitacion){
         habitacion.disponible=true;
     }
@@ -90,7 +98,18 @@ public class ListaHabitacion {
         System.out.println("habitaciones existentes: ");
         int i= 1;
         for (Habitacion e: habitaciones){
-            System.out.println(i+ ").  "+e.piso+e.Numero);
+            String cliente;
+            if (e.cliente!= null){
+                cliente="ultimo cliente: " +e.cliente.nombre+" dias:"+e.diaInicio+" a "+e.diaFin;
+                if (e.pack!=null){
+                    cliente=cliente+ " pack: "+ e.pack.getNombre();
+                }
+            }else cliente="sin cliente actualmente";
+            String disponibilidad="habilitada";
+            if (!e.disponible){
+                disponibilidad="deshabilitada";
+            }
+            System.out.println(i+ ").  "+e.piso+e.Numero+cliente+"  "+disponibilidad);
             
             i++;
         }
@@ -99,9 +118,28 @@ public class ListaHabitacion {
         System.out.println("habitaciones existentes: ");
         int i= 1;
         for (Habitacion e: habitaciones){
-            if (e.diaInicio >= diaInicio && e.diaFin <= diaFin){
-            }else {System.out.println(i+ ").  "+e.piso+e.Numero);
-            
+            boolean flag=true;
+            for (int j=diaInicio;j<=diaFin;j++){
+                for(int k: e.dias){
+                    if(j==k){
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if (flag){
+            String cliente;
+            if (e.cliente!= null){
+                cliente=e.cliente.nombre+" dias:"+e.diaInicio+" a "+e.diaFin;
+                if (e.pack!=null){
+                    cliente=cliente+ " pack: "+ e.pack.getNombre();
+                }
+            }else cliente="sin cliente actualmente";
+            String disponibilidad="habilitada";
+            if (!e.disponible){
+                disponibilidad="deshabilitada";
+            }
+            System.out.println(i+ ").  "+e.piso+e.Numero+"   "+cliente+"  "+disponibilidad);
             i++;}
         }
     }

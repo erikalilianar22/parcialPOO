@@ -57,7 +57,7 @@ public class ListaCliente {
     }
     public boolean buscar(String cliente){
         for (Cliente e : clientes){
-            if (cliente == e.nombre){
+            if (cliente.equals(e.nombre)){
                 return true;
             }
         }

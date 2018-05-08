@@ -16,6 +16,8 @@ public class Reserva {
     public float total;
     public Pack pack;
     int Total;
+    int diaInicio;
+    int diaFin;
     
     public Reserva(){
     }

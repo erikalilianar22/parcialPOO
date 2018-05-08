@@ -5,6 +5,8 @@
  */
 package parcialpoo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author rafa
@@ -23,15 +25,24 @@ public class Habitacion {
     public Cliente cliente;
     public int diaInicio;
     public int diaFin;
+    public ArrayList<Integer> dias;
 
     
     public Habitacion(){
+        dias = new ArrayList<>();
     tipo = cargo = reservada = false;
     disponible=true;
     total=0;
     pack=null;
     cliente=null;
     precioBase=0;
+    }
+    public void addDias(){
+        for(int dia=diaInicio;dia<=diaFin;dia++){
+            dias.add(dia);
+        }
+        
+        
     }
     
     
